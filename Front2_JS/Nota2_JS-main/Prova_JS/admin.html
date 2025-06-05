@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Área Administrativa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background-color: #00aee0;
+      padding: 0px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      text-align: left;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #00aee0;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #008bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Área Administrativa</h1>
+  </header>
+
+  <div class="container">
+    <h2>Login do Administrador</h2>
+    <form>
+      <div>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      </div>
+      <div>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" required />
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+</body>
+</html>
+
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("btn-login")
+          .addEventListener("click", function () {
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+            const mensagemErro = document.getElementById("mensagem-erro");
+
+            if (!email || !senha) {
+              mensagemErro.textContent =
+                "Entrada Inválida: E-mail e Senha são obrigatórios.";
+              return;
+            }
+
+            const objLoginSenha = {
+              email: email,
+              senha: senha,
+            };
+
+            const valido = validarUsuario(objLoginSenha);
+
+            if (valido === true) {
+              window.location.href = "mensagens.html";
+            } else {
+              mensagemErro.textContent = "E-mail e Senha inválidos";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
